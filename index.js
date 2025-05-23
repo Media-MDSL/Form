@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await response.text();
 
       if (result.toLowerCase().includes("success")) {
-        window.location.href = "https://bit.ly/Media_MDSL"; // ✅ Redirect to your own HTML page in the same folder
+        window.location.href = "more.html"; // ✅ Redirect to your own HTML page in the same folder
       } else {
         showError("Form submitted, but something went wrong: " + result);
       }
