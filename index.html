@@ -1,20 +1,84 @@
+
 <!DOCTYPE html>
-<html>
-  <head>
-    <base target="_top">
-  </head>
-  <body>
-    <h2>Custom Form</h2>
-    <form method="POST" action="https://script.google.com/macros/s/AKfycbw7k2r3iH0iN5HK9NN9Xyi7FosFZTR90sLeueIiWnfT9k6SZvEAdBExN09-hhA_Q4RV/exec">
-      <label>Name:</label><br>
-      <input type="text" name="name" required><br><br>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Submit Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background-color: #f4f4f4;
+    }
+    form {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    input, button {
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #2b7cff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #155dcb;
+    }
+  </style>
+</head>
+<body>
 
-      <label>Email:</label><br>
-      <input type="email" name="email" required><br><br>
+  <form id="myForm">
+    <h2>Submit your info</h2>
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email" required />
+    <button type="submit">Submit</button>
+  </form>
 
-      <button type="submit">Submit</button>
-    </form>
+  <script>
+    const form = document.getElementById("myForm");
 
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
 
-  </body>
+      const formData = new FormData(form);
+      const params = new URLSearchParams();
+      for (const pair of formData.entries()) {
+        params.append(pair[0], pair[1]);
+      }
+
+      fetch("https://script.google.com/macros/s/AKfycbw7k2r3iH0iN5HK9NN9Xyi7FosFZTR90sLeueIiWnfT9k6SZvEAdBExN09-hhA_Q4RV/exec", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: params.toString()
+      })
+      .then(response => response.text())
+      .then(result => {
+        if (result.toLowerCase().includes("success")) {
+          window.location.href = "https://bit.ly/Media_MDSL"; // Your hosted success page
+        } else {
+          alert("Form submitted, but something was off: " + result);
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("Failed to submit: " + error.message);
+      });
+    });
+  </script>
+
+</body>
 </html>
