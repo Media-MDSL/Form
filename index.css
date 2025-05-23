@@ -80,10 +80,21 @@ label {
   padding: 0rem 0.3rem;
 }
 
+input[type="text"],
+input[type="email"] {
+  width: 75%; /* About half the width */
+}
+
+/* On screens smaller than 600px (mobile), make inputs full width */
+@media (max-width: 600px) {
+  input[type="text"],
+  input[type="email"] {
+    width: 100%;
+  }
+}
 
 input[type="text"],
 input[type="email"] {
-  width: 50%; /* About half the width */
   padding: 0.6rem 0.3rem;
   border: none;
   border-bottom: 2px solid #cccccc;
