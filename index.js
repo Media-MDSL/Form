@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = "0.6";
+    submitBtn.textContent = "Submitting...";
     const formData = new FormData(form);
     const params = new URLSearchParams();
     for (const pair of formData.entries()) {
@@ -11,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbysbSHmXWc01AY8F25okWc8MAt-B1UkJKAdhtZmt1wuGksGbXsUdbPwR4HyIQYbd2qF/exec", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbzIb4n4mYHZzgyvqHNudtvlJOCh0usjG3SuJ6qq9mFWi1HNO0XblaHDJiFVuOMKNjB5/exec", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -22,7 +26,17 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await response.text();
 
       if (result.toLowerCase().includes("success")) {
-        window.location.href = "more.html"; // ✅ Redirect to your own HTML page in the same folder
+        Swal.fire({
+          icon: "success",
+          title: "Submission Successful",
+          text: "Thank you for registering. Redirecting...",
+          showConfirmButton: false,
+          timer: 2200,
+          timerProgressBar: true
+        });
+        setTimeout(() => {
+          window.location.href = "more.html";
+        }, 2200);
       } else {
         showError("Form submitted, but something went wrong: " + result);
       }
