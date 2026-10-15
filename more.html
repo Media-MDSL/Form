@@ -3,8 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flyer Page</title>
+  <title>You're registered | Multidigital Services Limited</title>
+  <meta name="theme-color" content="#0B3460">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --navy: #0B3460;
+      --navy-deep: #072447;
+      --orange: #F58A07;
+      --orange-light: #FFB347;
+      --page: #EAF0F8;
+    }
+
     * {
       box-sizing: border-box;
     }
@@ -12,9 +25,9 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      height: 100vh;
+      font-family: "Montserrat", Arial, sans-serif;
+      background-color: var(--page);
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -23,17 +36,18 @@
     .container {
       display: flex;
       flex-wrap: wrap;
-      background-color: #F0FAFF;
+      background-color: #ffffff;
       max-width: 1000px;
       width: 100%;
       height: 95vh;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 15px rgba(7, 36, 71, 0.18);
       border-radius: 10px;
       overflow: hidden;
     }
 
     .flyer {
       flex: 2;
+      max-height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -50,45 +64,89 @@
 
     .cta {
       flex: 1;
-      background-color: #3c7494;
-      padding: 30px 20px;
+      background: linear-gradient(170deg, var(--navy) 0%, var(--navy-deep) 100%);
+      padding: 30px 24px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      border-left: 1px solid #eee;
+      text-align: center;
+      color: #fff;
+    }
+
+    .cta .confirm {
+      margin: 0 0 8px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .cta .event {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--orange-light);
+    }
+
+    .cta .when {
+      margin: 4px 0 0;
+      font-size: 0.9rem;
+    }
+
+    .cta .note {
+      margin: 14px 0 0;
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .cta hr {
+      width: 56px;
+      border: 0;
+      border-top: 3px solid var(--orange);
+      margin: 26px 0 22px;
     }
 
     .cta h2 {
-      margin-bottom: 20px;
-      font-size: 1.4rem;
-      color: white;
-      text-align: center;
+      margin: 0 0 16px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
     }
 
     .cta a {
-      background-color: #ff9100;
-      color: white;
+      background-color: var(--orange);
+      color: var(--navy-deep);
       text-decoration: none;
       padding: 12px 24px;
       border-radius: 5px;
-      font-weight: bold;
-      transition: background 0.3s ease;
+      font-weight: 700;
+      transition: background-color 0.2s;
     }
 
     .cta a:hover {
-      background-color: #ff9100;
+      background-color: var(--orange-light);
+    }
+
+    .cta a:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 3px;
     }
 
     @media (max-width: 768px) {
+      body {
+        align-items: flex-start;
+      }
+
       .container {
         flex-direction: column;
         height: auto;
+        border-radius: 0;
       }
 
       .cta {
-        border-left: none;
-        border-top: 1px solid #eee;
+        order: -1;
+        padding: 26px 20px;
       }
     }
   </style>
@@ -96,12 +154,17 @@
 <body>
 
   <div class="container">
-    <div class="flyer" style="max-height: 100%; border-radius: 8px;">
-      <img src="mdsl_latest.jpeg" alt="Flyer Image" />
+    <div class="flyer">
+      <img src="mdsl_latest.jpeg" alt="Multidigital Services Limited company flyer" />
     </div>
     <div class="cta">
+      <p class="confirm">You're registered</p>
+      <p class="event">Smarter Navigation, Safer Seas: Insights from Anschütz &amp; Jotron</p>
+      <p class="when">11 November 2026, 10:00 AM (WAT)</p>
+      <p class="note">The webinar access link will be shared with registered participants ahead of the event.</p>
+      <hr>
       <h2>Want to know us more?</h2>
-      <a href="https://multidigitalng.com/" target="_blank">Click Here</a>
+      <a href="https://multidigitalng.com/" target="_blank" rel="noopener">Click Here</a>
     </div>
   </div>
 
